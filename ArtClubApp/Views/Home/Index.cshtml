@@ -1,8 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<head>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</head>
+
+<style>
+    .contentBackgroundImage {
+        background-image: url("/data/img/landing_page.jpg");
+        width: auto;
+        height: auto;
+        background-size: 100% 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
+
+
+<body class="contentBackgroundImage">
+    <div class="text-center" style="padding:10px">
+        <h2 style="font-family:Arial, 'Montserrat Subrayada', sans-serif; font-palette:light"><b>Welcome</b></h2>
+        <p style="font-family:Arial, 'Montserrat Subrayada', sans-serif">Hello</p>
+        <a href="Home/LogIn" class="btn btn-primary " style="width: 250px ;font-family:Arial,'Montserrat Subrayada', sans-serif; font-palette:dark">Log In</a>
+        <a href="Home/SignUp" class="btn btn-primary" button-item" style="width: 250px ; font-family:Arial, 'Montserrat Subrayada', sans-serif; font-palette:dark">Sign Up</a>
+    </div>
+</body>
