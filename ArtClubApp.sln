@@ -5,20 +5,6 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtClubApp", "ArtClubApp\ArtClubApp.csproj", "{F7440A7D-5221-4935-A555-DCE450EC125E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtClubAppLogic", "AppLogic\ArtClubAppLogic.csproj", "{92057CD4-087E-4FB4-98F9-5B575324EBC0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppLogic", "AppLogic", "{63AEBE7B-EB42-4C55-957E-4C42B4816832}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{9BD1B6A1-E43A-4447-BAE9-CACC50D85F15}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{0CD859EA-CDFF-4E64-A1BA-E02353C7BB8E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtClubApp.DataAccess.Abstractions", "ArtClubApp.DataAccess.Abstractions\ArtClubApp.DataAccess.Abstractions.csproj", "{790BD3A7-9D6E-44AB-9004-BA6D6BB95EA8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtClubApp.DataAccess.Model", "ArtClubApp.DataAccess.Model\ArtClubApp.DataAccess.Model.csproj", "{193DA537-D10D-4968-81B0-697F7139FEC1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtClub.DataAccess.EF", "ArtClub.DataAccess.EF\ArtClub.DataAccess.EF.csproj", "{75BC080F-F97E-4233-A6F1-C9516BBA5622}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,32 +15,9 @@ Global
 		{F7440A7D-5221-4935-A555-DCE450EC125E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7440A7D-5221-4935-A555-DCE450EC125E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7440A7D-5221-4935-A555-DCE450EC125E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92057CD4-087E-4FB4-98F9-5B575324EBC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92057CD4-087E-4FB4-98F9-5B575324EBC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92057CD4-087E-4FB4-98F9-5B575324EBC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92057CD4-087E-4FB4-98F9-5B575324EBC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{790BD3A7-9D6E-44AB-9004-BA6D6BB95EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{790BD3A7-9D6E-44AB-9004-BA6D6BB95EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{790BD3A7-9D6E-44AB-9004-BA6D6BB95EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{790BD3A7-9D6E-44AB-9004-BA6D6BB95EA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{193DA537-D10D-4968-81B0-697F7139FEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{193DA537-D10D-4968-81B0-697F7139FEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{193DA537-D10D-4968-81B0-697F7139FEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{193DA537-D10D-4968-81B0-697F7139FEC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75BC080F-F97E-4233-A6F1-C9516BBA5622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75BC080F-F97E-4233-A6F1-C9516BBA5622}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75BC080F-F97E-4233-A6F1-C9516BBA5622}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75BC080F-F97E-4233-A6F1-C9516BBA5622}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F7440A7D-5221-4935-A555-DCE450EC125E} = {0CD859EA-CDFF-4E64-A1BA-E02353C7BB8E}
-		{92057CD4-087E-4FB4-98F9-5B575324EBC0} = {63AEBE7B-EB42-4C55-957E-4C42B4816832}
-		{790BD3A7-9D6E-44AB-9004-BA6D6BB95EA8} = {9BD1B6A1-E43A-4447-BAE9-CACC50D85F15}
-		{193DA537-D10D-4968-81B0-697F7139FEC1} = {9BD1B6A1-E43A-4447-BAE9-CACC50D85F15}
-		{75BC080F-F97E-4233-A6F1-C9516BBA5622} = {9BD1B6A1-E43A-4447-BAE9-CACC50D85F15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90092D0A-07F0-49EC-A7C1-BA8BCD4B2E7D}
