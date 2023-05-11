@@ -7,6 +7,49 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <Compile Remove="Views\Artworks\**" />
+    <Compile Remove="Views\Contacts\**" />
+    <Compile Remove="Views\Events\**" />
+    <Compile Remove="Views\ExhibitionHalls\**" />
+    <Compile Remove="Views\Payments\**" />
+    <Compile Remove="wwwroot\NewFolder1\**" />
+    <Compile Remove="wwwroot\NewFolder2\**" />
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="NewFolder\**" />
+    <Content Remove="Views\Artworks\**" />
+    <Content Remove="Views\Contacts\**" />
+    <Content Remove="Views\Events\**" />
+    <Content Remove="Views\ExhibitionHalls\**" />
+    <Content Remove="Views\Payments\**" />
+    <Content Remove="wwwroot\NewFolder1\**" />
+    <Content Remove="wwwroot\NewFolder2\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Views\Artworks\**" />
+    <EmbeddedResource Remove="Views\Contacts\**" />
+    <EmbeddedResource Remove="Views\Events\**" />
+    <EmbeddedResource Remove="Views\ExhibitionHalls\**" />
+    <EmbeddedResource Remove="Views\Payments\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder2\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="NewFolder\**" />
+    <None Remove="Views\Artworks\**" />
+    <None Remove="Views\Contacts\**" />
+    <None Remove="Views\Events\**" />
+    <None Remove="Views\ExhibitionHalls\**" />
+    <None Remove="Views\Payments\**" />
+    <None Remove="wwwroot\NewFolder1\**" />
+    <None Remove="wwwroot\NewFolder2\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\img\rand.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
@@ -21,6 +64,14 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Artworks\Create.cshtml" />
+    <Content Include="Views\Artworks\Delete.cshtml" />
+    <Content Include="Views\Artworks\Details.cshtml" />
+    <Content Include="Views\Artworks\Edit.cshtml" />
+    <Content Include="Views\Artworks\Index.cshtml" />
   </ItemGroup>
 
 </Project>

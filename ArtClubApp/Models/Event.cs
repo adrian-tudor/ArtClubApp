@@ -6,8 +6,8 @@ namespace ArtClubApp.Models
     {
         [Key]
         public int Event_id { get; set; }
-        public string Event_name { get; set; }
-        public string Event_location { get; set; }
-        public DateTime Event_time { get; set; }
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public DateTime Time { get; set; }
     }
 }

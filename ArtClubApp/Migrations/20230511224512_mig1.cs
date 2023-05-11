@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArtClubApp.Migrations
 {
     /// <inheritdoc />
-    public partial class mig2 : Migration
+    public partial class mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -65,10 +65,10 @@ namespace ArtClubApp.Migrations
                 {
                     Artwork_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Artwork_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Artwork_Rent = table.Column<float>(type: "real", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rent = table.Column<float>(type: "real", nullable: false),
                     Payment_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -120,9 +120,9 @@ namespace ArtClubApp.Migrations
                 {
                     ExhibitionHall_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExhibitionHall_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExhbitionHall_Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExhibitionHall_Rent = table.Column<float>(type: "real", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rent = table.Column<float>(type: "real", nullable: false),
                     Payment_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -226,9 +226,9 @@ namespace ArtClubApp.Migrations
                 {
                     Event_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Event_name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Event_location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Event_time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Time = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
