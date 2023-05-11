@@ -1,7 +1,10 @@
-﻿namespace ArtClubApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ArtClubApp.Models
 {
     public class ExhibitionHall
     {
+        [Key]
         public int ExhibitionHall_Id { get; set; }
         public string ExhibitionHall_Name { get; set; }
         public string ExhbitionHall_Location { get; set; }

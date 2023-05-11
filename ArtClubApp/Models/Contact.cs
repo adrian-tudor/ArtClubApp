@@ -1,7 +1,10 @@
-﻿namespace ArtClubApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ArtClubApp.Models
 {
     public class Contact
     {
+        [Key]
         public int Message_id { get; set; }
 
         public string? First_name { get; set; }
