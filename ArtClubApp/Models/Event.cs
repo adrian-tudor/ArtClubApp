@@ -2,7 +2,7 @@
 
 namespace ArtClubApp.Models
 {
-    public class ArtClub
+    public class Event
     {
         [Key]
         public int Event_id { get; set; }

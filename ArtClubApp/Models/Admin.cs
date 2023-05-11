@@ -1,15 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtClubApp.Models
 {
-    public class Admin
+    [NotMapped]
+    public class Admin : IdentityUser
     {
         [Key]
-        public int admin_id { get; set; }
-        public ICollection<ArtClub>? Artclub { get; set; }
+        public int Admin_Id { get; set; }
+        public ICollection<Event> Artclub { get; set; }
 
-        public string First_name { get; set; }
-        public string Last_name { get; set; }
         public string Email { get; set; }
 
         public string Password { get; set; }

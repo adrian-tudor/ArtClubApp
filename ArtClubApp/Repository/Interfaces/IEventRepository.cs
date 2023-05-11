@@ -2,7 +2,7 @@
 
 namespace ArtClubApp.Repository.Interfaces
 {
-    public interface IArtClubRepository : IRepositoryBase<ArtClub>
+    public interface IEventRepository : IRepositoryBase<Event>
     {
     }
 }

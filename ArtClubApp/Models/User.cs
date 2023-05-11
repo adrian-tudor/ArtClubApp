@@ -8,10 +8,8 @@ namespace ArtClubApp.Models
     public class User : IdentityUser
     {
         [Key]
-        public int user_id { get; set; }
-        public ICollection<ArtClub>? Artclub { get; set; }
-        public string? First_name { get; set; }
-        public string? Last_name { get; set; }
+        public int User_id { get; set; }
+        public ICollection<Event> Artclub { get; set; }
         public override string? Email { get; set; }
 
         public string? Password { get; set; }
