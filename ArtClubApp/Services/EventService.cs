@@ -15,16 +15,16 @@ namespace ArtClubApp.Services
         {
             return repositoryWrapper.eventRepository.FindByCondition(expression).ToList();
         }
-        public void AddUser(Event events)
+        public void AddEvent(Event events)
         {
             repositoryWrapper.eventRepository.Create(events);
         }
-        public void UpdateUser(Event events)
+        public void UpdateEvent(Event events)
         {
             repositoryWrapper.eventRepository.Update(events);
         }
 
-        public void DeleteUser(Event events)
+        public void DeleteEvent(Event events)
         {
             repositoryWrapper.eventRepository.Delete(events);
         }
