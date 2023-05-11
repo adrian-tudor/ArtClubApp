@@ -13,7 +13,7 @@ namespace ArtClubApp.Models
         public override string? Email { get; set; }
 
         public string? Password { get; set; }
-        public Contact contact { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
 
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtClubApp.Migrations
 {
     [DbContext(typeof(ArtClubContext))]
-    [Migration("20230511065041_init")]
-    partial class init
+    [Migration("20230511130349_mig2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,11 +60,11 @@ namespace ArtClubApp.Migrations
 
             modelBuilder.Entity("ArtClubApp.Models.Contact", b =>
                 {
-                    b.Property<int>("Message_id")
+                    b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Message_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"));
 
                     b.Property<int?>("ArtClubEvent_id")
                         .HasColumnType("int");
@@ -73,17 +73,14 @@ namespace ArtClubApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("First_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Last_name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Message_id");
+                    b.Property<int>("User_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContactId");
 
                     b.HasIndex("ArtClubEvent_id");
 
@@ -248,9 +245,6 @@ namespace ArtClubApp.Migrations
                     b.Property<int>("User_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("contactMessage_id")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -263,9 +257,22 @@ namespace ArtClubApp.Migrations
 
                     b.HasIndex("Payment_Id");
 
-                    b.HasIndex("contactMessage_id");
-
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ContactUser", b =>
+                {
+                    b.Property<int>("ContactsContactId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ContactsContactId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("ContactUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -451,14 +458,21 @@ namespace ArtClubApp.Migrations
                     b.HasOne("ArtClubApp.Models.Payment", null)
                         .WithMany("Users")
                         .HasForeignKey("Payment_Id");
+                });
 
-                    b.HasOne("ArtClubApp.Models.Contact", "contact")
-                        .WithMany("user")
-                        .HasForeignKey("contactMessage_id")
+            modelBuilder.Entity("ContactUser", b =>
+                {
+                    b.HasOne("ArtClubApp.Models.Contact", null)
+                        .WithMany()
+                        .HasForeignKey("ContactsContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("contact");
+                    b.HasOne("ArtClubApp.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -510,11 +524,6 @@ namespace ArtClubApp.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ArtClubApp.Models.Contact", b =>
-                {
-                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("ArtClubApp.Models.Payment", b =>

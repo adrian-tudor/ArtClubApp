@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ArtClubApp.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class mig2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -82,98 +82,6 @@ namespace ArtClubApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExhibitionHalls",
-                columns: table => new
-                {
-                    ExhibitionHall_Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ExhibitionHall_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExhbitionHall_Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ExhibitionHall_Rent = table.Column<float>(type: "real", nullable: false),
-                    Payment_Id = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExhibitionHalls", x => x.ExhibitionHall_Id);
-                    table.ForeignKey(
-                        name: "FK_ExhibitionHalls_Payments_Payment_Id",
-                        column: x => x.Payment_Id,
-                        principalTable: "Payments",
-                        principalColumn: "Payment_Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Resources",
-                columns: table => new
-                {
-                    Resources_Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ExhibitionHall_Id = table.Column<int>(type: "int", nullable: true),
-                    Artwork_Id = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Resources", x => x.Resources_Id);
-                    table.ForeignKey(
-                        name: "FK_Resources_Artworks_Artwork_Id",
-                        column: x => x.Artwork_Id,
-                        principalTable: "Artworks",
-                        principalColumn: "Artwork_Id");
-                    table.ForeignKey(
-                        name: "FK_Resources_ExhibitionHalls_ExhibitionHall_Id",
-                        column: x => x.ExhibitionHall_Id,
-                        principalTable: "ExhibitionHalls",
-                        principalColumn: "ExhibitionHall_Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -181,7 +89,6 @@ namespace ArtClubApp.Migrations
                     User_id = table.Column<int>(type: "int", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    contactMessage_id = table.Column<int>(type: "int", nullable: false),
                     Payment_Id = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -205,6 +112,92 @@ namespace ArtClubApp.Migrations
                         column: x => x.Payment_Id,
                         principalTable: "Payments",
                         principalColumn: "Payment_Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExhibitionHalls",
+                columns: table => new
+                {
+                    ExhibitionHall_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExhibitionHall_Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExhbitionHall_Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExhibitionHall_Rent = table.Column<float>(type: "real", nullable: false),
+                    Payment_Id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExhibitionHalls", x => x.ExhibitionHall_Id);
+                    table.ForeignKey(
+                        name: "FK_ExhibitionHalls_Payments_Payment_Id",
+                        column: x => x.Payment_Id,
+                        principalTable: "Payments",
+                        principalColumn: "Payment_Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,25 +242,72 @@ namespace ArtClubApp.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contact",
+                name: "Resources",
                 columns: table => new
                 {
-                    Message_id = table.Column<int>(type: "int", nullable: false)
+                    Resources_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    First_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Last_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ArtClubEvent_id = table.Column<int>(type: "int", nullable: true)
+                    ExhibitionHall_Id = table.Column<int>(type: "int", nullable: true),
+                    Artwork_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contact", x => x.Message_id);
+                    table.PrimaryKey("PK_Resources", x => x.Resources_Id);
+                    table.ForeignKey(
+                        name: "FK_Resources_Artworks_Artwork_Id",
+                        column: x => x.Artwork_Id,
+                        principalTable: "Artworks",
+                        principalColumn: "Artwork_Id");
+                    table.ForeignKey(
+                        name: "FK_Resources_ExhibitionHalls_ExhibitionHall_Id",
+                        column: x => x.ExhibitionHall_Id,
+                        principalTable: "ExhibitionHalls",
+                        principalColumn: "ExhibitionHall_Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contact",
+                columns: table => new
+                {
+                    ContactId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArtClubEvent_id = table.Column<int>(type: "int", nullable: true),
+                    User_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contact", x => x.ContactId);
                     table.ForeignKey(
                         name: "FK_Contact_Events_ArtClubEvent_id",
                         column: x => x.ArtClubEvent_id,
                         principalTable: "Events",
                         principalColumn: "Event_id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContactUser",
+                columns: table => new
+                {
+                    ContactsContactId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactUser", x => new { x.ContactsContactId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_ContactUser_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ContactUser_Contact_ContactsContactId",
+                        column: x => x.ContactsContactId,
+                        principalTable: "Contact",
+                        principalColumn: "ContactId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -308,11 +348,6 @@ namespace ArtClubApp.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_contactMessage_id",
-                table: "AspNetUsers",
-                column: "contactMessage_id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_Payment_Id",
                 table: "AspNetUsers",
                 column: "Payment_Id");
@@ -328,6 +363,11 @@ namespace ArtClubApp.Migrations
                 name: "IX_Contact_ArtClubEvent_id",
                 table: "Contact",
                 column: "ArtClubEvent_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContactUser_UsersId",
+                table: "ContactUser",
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_UserId",
@@ -348,51 +388,11 @@ namespace ArtClubApp.Migrations
                 name: "IX_Resources_ExhibitionHall_Id",
                 table: "Resources",
                 column: "ExhibitionHall_Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                table: "AspNetUserClaims",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                table: "AspNetUserRoles",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_AspNetUsers_Contact_contactMessage_id",
-                table: "AspNetUsers",
-                column: "contactMessage_id",
-                principalTable: "Contact",
-                principalColumn: "Message_id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Payments_Payment_Id",
-                table: "AspNetUsers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Events_AspNetUsers_UserId",
-                table: "Events");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -409,10 +409,16 @@ namespace ArtClubApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ContactUser");
+
+            migrationBuilder.DropTable(
                 name: "Resources");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Contact");
 
             migrationBuilder.DropTable(
                 name: "Artworks");
@@ -421,16 +427,13 @@ namespace ArtClubApp.Migrations
                 name: "ExhibitionHalls");
 
             migrationBuilder.DropTable(
-                name: "Payments");
+                name: "Events");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Contact");
-
-            migrationBuilder.DropTable(
-                name: "Events");
+                name: "Payments");
         }
     }
 }
