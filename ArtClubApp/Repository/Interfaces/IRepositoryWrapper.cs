@@ -3,7 +3,8 @@
     public interface IRepositoryWrapper
     {
         IAdminRepository adminRepository { get; }
-        IArtClubRepository artclubRepository { get; }
+        IUserRepository userRepository { get; }
+        IEventRepository eventRepository { get; }
         IArtworkRepository artworkRepository { get; }
         IContactRepository contactRepository { get; }
         IExhibitionHallRepository exhibitionHallRepository { get; }

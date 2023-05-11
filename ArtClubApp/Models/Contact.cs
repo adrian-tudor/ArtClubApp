@@ -15,7 +15,7 @@ namespace ArtClubApp.Models
 
         public string Subject { get; set; }
 
-        public ArtClub? ArtClub { get; set; }
+        public Event? ArtClub { get; set; }
 
         public int user_id;
 
