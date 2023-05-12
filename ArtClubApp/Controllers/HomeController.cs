@@ -30,7 +30,19 @@ namespace ArtClubApp.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+        public IActionResult Membership()
+        {
+            return View();
+        }
+        public IActionResult ExhibitionHalls()
+        {
+            return View();
+        }
+        public IActionResult Payments()
         {
             return View();
         }

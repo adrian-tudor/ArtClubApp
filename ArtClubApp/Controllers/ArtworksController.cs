@@ -152,6 +152,10 @@ namespace ArtClubApp.Controllers
         {
             return View();
         }
+        public IActionResult Payments()
+        {
+            return View();
+        }
 
         // POST: Artworks/Delete/5
         [HttpPost, ActionName("Delete")]

@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Membership";
+}
+<head>
+
+</head>
+
+<style>
+    .login-register {
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .contentBackgroundImage {
+            background-image: url("/img/Paint-Art-Transparent-Background.png");
+            width: auto;
+            height: auto;
+            background-size: 100% 80%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+</style>
+<body class="contentBackgroundImage">
+<div class="container mt-4 bg-light py-4 shadow rounded">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="display-4 text-danger">The ArtClub</h1>
+        <i class="fas fa-users fa-9x text-info"></i>
+        <h4 class="text-secondary text-center friendly-description">
+            Membership starts from
+            <span class="text-danger">
+                RON50.
+            </span>
+        </h4>
+
+        <div class="d-flex login-register">
+            <a class="btn btn-outline-info flex-grow-1 m-1 p-2" id="login" href="/Identity/Account/Login">Login</a>
+            <a class="btn btn-outline-danger flex-grow-1 m-1 p-2" id="register" href="/Identity/Account/Register"> Register</a>
+        </div>
+    </div>
+</div>
+</body>
+

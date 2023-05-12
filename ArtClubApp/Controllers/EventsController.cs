@@ -135,6 +135,11 @@ namespace ArtClubApp.Controllers
 
             return View(@event);
         }
+        public IActionResult ExhibitionHalls()
+        {
+            return View();
+        }
+
 
         // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
