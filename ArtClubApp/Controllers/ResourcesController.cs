@@ -7,92 +7,90 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtClubApp.Data;
 using ArtClubApp.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace ArtClubApp.Controllers
 {
-    public class ArtworksController : Controller
+    public class ResourcesController : Controller
     {
-        private readonly SignInManager<User> signInManager;
         private readonly ArtClubContext _context;
 
-        public ArtworksController(ArtClubContext context)
+        public ResourcesController(ArtClubContext context)
         {
             _context = context;
         }
 
-        // GET: Artworks
+        // GET: Resources
         public async Task<IActionResult> Index()
         {
-              return _context.Artworks != null ? 
-                          View(await _context.Artworks.ToListAsync()) :
-                          Problem("Entity set 'ArtClubContext.Artworks'  is null.");
+              return _context.Resources != null ? 
+                          View(await _context.Resources.ToListAsync()) :
+                          Problem("Entity set 'ArtClubContext.Resources'  is null.");
         }
 
-        // GET: Artworks/Details/5
+        // GET: Resources/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.Resources == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks
-                .FirstOrDefaultAsync(m => m.Artwork_Id == id);
-            if (artwork == null)
+            var resources = await _context.Resources
+                .FirstOrDefaultAsync(m => m.Resources_Id == id);
+            if (resources == null)
             {
                 return NotFound();
             }
 
-            return View(artwork);
+            return View(resources);
         }
 
-        // GET: Artworks/Create
+        // GET: Resources/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Artworks/Create
+        // POST: Resources/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Artwork_Id,Title,Genre,Author,Rent")] Artwork artwork)
+        public async Task<IActionResult> Create([Bind("Resources_Id")] Resources resources)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(artwork);
+                _context.Add(resources);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(artwork);
+            return View(resources);
         }
 
-        // GET: Artworks/Edit/5
+        // GET: Resources/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.Resources == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks.FindAsync(id);
-            if (artwork == null)
+            var resources = await _context.Resources.FindAsync(id);
+            if (resources == null)
             {
                 return NotFound();
             }
-            return View(artwork);
+            return View(resources);
         }
 
-        // POST: Artworks/Edit/5
+        // POST: Resources/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Artwork_Id,Title,Genre,Author,Rent")] Artwork artwork)
+        public async Task<IActionResult> Edit(int id, [Bind("Resources_Id")] Resources resources)
         {
-            if (id != artwork.Artwork_Id)
+            if (id != resources.Resources_Id)
             {
                 return NotFound();
             }
@@ -101,12 +99,12 @@ namespace ArtClubApp.Controllers
             {
                 try
                 {
-                    _context.Update(artwork);
+                    _context.Update(resources);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ArtworkExists(artwork.Artwork_Id))
+                    if (!ResourcesExists(resources.Resources_Id))
                     {
                         return NotFound();
                     }
@@ -117,64 +115,49 @@ namespace ArtClubApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(artwork);
+            return View(resources);
         }
 
-        // GET: Artworks/Delete/5
+        // GET: Resources/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.Resources == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks
-                .FirstOrDefaultAsync(m => m.Artwork_Id == id);
-            if (artwork == null)
+            var resources = await _context.Resources
+                .FirstOrDefaultAsync(m => m.Resources_Id == id);
+            if (resources == null)
             {
                 return NotFound();
             }
 
-            return View(artwork);
+            return View(resources);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-        public IActionResult ExhibitionHall()
-        {
-            return View();
-        }
-
-        // POST: Artworks/Delete/5
+        // POST: Resources/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Artworks == null)
+            if (_context.Resources == null)
             {
-                return Problem("Entity set 'ArtClubContext.Artworks'  is null.");
+                return Problem("Entity set 'ArtClubContext.Resources'  is null.");
             }
-            var artwork = await _context.Artworks.FindAsync(id);
-            if (artwork != null)
+            var resources = await _context.Resources.FindAsync(id);
+            if (resources != null)
             {
-                _context.Artworks.Remove(artwork);
+                _context.Resources.Remove(resources);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ArtworkExists(int id)
+        private bool ResourcesExists(int id)
         {
-          return (_context.Artworks?.Any(e => e.Artwork_Id == id)).GetValueOrDefault();
+          return (_context.Resources?.Any(e => e.Resources_Id == id)).GetValueOrDefault();
         }
     }
 }

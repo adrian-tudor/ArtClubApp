@@ -7,92 +7,90 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtClubApp.Data;
 using ArtClubApp.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace ArtClubApp.Controllers
 {
-    public class ArtworksController : Controller
+    public class PaymentsController : Controller
     {
-        private readonly SignInManager<User> signInManager;
         private readonly ArtClubContext _context;
 
-        public ArtworksController(ArtClubContext context)
+        public PaymentsController(ArtClubContext context)
         {
             _context = context;
         }
 
-        // GET: Artworks
+        // GET: Payments
         public async Task<IActionResult> Index()
         {
-              return _context.Artworks != null ? 
-                          View(await _context.Artworks.ToListAsync()) :
-                          Problem("Entity set 'ArtClubContext.Artworks'  is null.");
+              return _context.Payments != null ? 
+                          View(await _context.Payments.ToListAsync()) :
+                          Problem("Entity set 'ArtClubContext.Payments'  is null.");
         }
 
-        // GET: Artworks/Details/5
+        // GET: Payments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.Payments == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks
-                .FirstOrDefaultAsync(m => m.Artwork_Id == id);
-            if (artwork == null)
+            var payment = await _context.Payments
+                .FirstOrDefaultAsync(m => m.Payment_Id == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
-            return View(artwork);
+            return View(payment);
         }
 
-        // GET: Artworks/Create
+        // GET: Payments/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Artworks/Create
+        // POST: Payments/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Artwork_Id,Title,Genre,Author,Rent")] Artwork artwork)
+        public async Task<IActionResult> Create([Bind("Payment_Id,Payment_Total")] Payment payment)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(artwork);
+                _context.Add(payment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(artwork);
+            return View(payment);
         }
 
-        // GET: Artworks/Edit/5
+        // GET: Payments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.Payments == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks.FindAsync(id);
-            if (artwork == null)
+            var payment = await _context.Payments.FindAsync(id);
+            if (payment == null)
             {
                 return NotFound();
             }
-            return View(artwork);
+            return View(payment);
         }
 
-        // POST: Artworks/Edit/5
+        // POST: Payments/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Artwork_Id,Title,Genre,Author,Rent")] Artwork artwork)
+        public async Task<IActionResult> Edit(int id, [Bind("Payment_Id,Payment_Total")] Payment payment)
         {
-            if (id != artwork.Artwork_Id)
+            if (id != payment.Payment_Id)
             {
                 return NotFound();
             }
@@ -101,12 +99,12 @@ namespace ArtClubApp.Controllers
             {
                 try
                 {
-                    _context.Update(artwork);
+                    _context.Update(payment);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ArtworkExists(artwork.Artwork_Id))
+                    if (!PaymentExists(payment.Payment_Id))
                     {
                         return NotFound();
                     }
@@ -117,64 +115,49 @@ namespace ArtClubApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(artwork);
+            return View(payment);
         }
 
-        // GET: Artworks/Delete/5
+        // GET: Payments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.Payments == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks
-                .FirstOrDefaultAsync(m => m.Artwork_Id == id);
-            if (artwork == null)
+            var payment = await _context.Payments
+                .FirstOrDefaultAsync(m => m.Payment_Id == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
-            return View(artwork);
+            return View(payment);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-        public IActionResult ExhibitionHall()
-        {
-            return View();
-        }
-
-        // POST: Artworks/Delete/5
+        // POST: Payments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Artworks == null)
+            if (_context.Payments == null)
             {
-                return Problem("Entity set 'ArtClubContext.Artworks'  is null.");
+                return Problem("Entity set 'ArtClubContext.Payments'  is null.");
             }
-            var artwork = await _context.Artworks.FindAsync(id);
-            if (artwork != null)
+            var payment = await _context.Payments.FindAsync(id);
+            if (payment != null)
             {
-                _context.Artworks.Remove(artwork);
+                _context.Payments.Remove(payment);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ArtworkExists(int id)
+        private bool PaymentExists(int id)
         {
-          return (_context.Artworks?.Any(e => e.Artwork_Id == id)).GetValueOrDefault();
+          return (_context.Payments?.Any(e => e.Payment_Id == id)).GetValueOrDefault();
         }
     }
 }

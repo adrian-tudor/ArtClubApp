@@ -74,4 +74,27 @@
     <Content Include="Views\Artworks\Index.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Views\Contacts\Create.cshtml" />
+    <Content Include="Views\Contacts\Delete.cshtml" />
+    <Content Include="Views\Contacts\Details.cshtml" />
+    <Content Include="Views\Contacts\Edit.cshtml" />
+    <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Events\Create.cshtml" />
+    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\Details.cshtml" />
+    <Content Include="Views\Events\Edit.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\ExhibitionHalls\Create.cshtml" />
+    <Content Include="Views\ExhibitionHalls\Delete.cshtml" />
+    <Content Include="Views\ExhibitionHalls\Details.cshtml" />
+    <Content Include="Views\ExhibitionHalls\Edit.cshtml" />
+    <Content Include="Views\ExhibitionHalls\Index.cshtml" />
+    <None Include="Views\Payments\Create.cshtml" />
+    <None Include="Views\Payments\Delete.cshtml" />
+    <None Include="Views\Payments\Details.cshtml" />
+    <None Include="Views\Payments\Edit.cshtml" />
+    <None Include="Views\Payments\Index.cshtml" />
+  </ItemGroup>
+
 </Project>

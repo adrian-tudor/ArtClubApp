@@ -20,9 +20,10 @@ namespace ArtClubApp.Controllers
         public IActionResult Index()
         {
             if (signInManager.IsSignedIn(User))
-                return RedirectToAction("Index", "Artworks");
+            return RedirectToAction("Index", "Events");
             return View();
         }
+        
 
         public IActionResult Privacy()
         {

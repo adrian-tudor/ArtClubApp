@@ -7,92 +7,90 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ArtClubApp.Data;
 using ArtClubApp.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace ArtClubApp.Controllers
 {
-    public class ArtworksController : Controller
+    public class ExhibitionHallsController : Controller
     {
-        private readonly SignInManager<User> signInManager;
         private readonly ArtClubContext _context;
 
-        public ArtworksController(ArtClubContext context)
+        public ExhibitionHallsController(ArtClubContext context)
         {
             _context = context;
         }
 
-        // GET: Artworks
+        // GET: ExhibitionHalls
         public async Task<IActionResult> Index()
         {
-              return _context.Artworks != null ? 
-                          View(await _context.Artworks.ToListAsync()) :
-                          Problem("Entity set 'ArtClubContext.Artworks'  is null.");
+              return _context.ExhibitionHalls != null ? 
+                          View(await _context.ExhibitionHalls.ToListAsync()) :
+                          Problem("Entity set 'ArtClubContext.ExhibitionHalls'  is null.");
         }
 
-        // GET: Artworks/Details/5
+        // GET: ExhibitionHalls/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.ExhibitionHalls == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks
-                .FirstOrDefaultAsync(m => m.Artwork_Id == id);
-            if (artwork == null)
+            var exhibitionHall = await _context.ExhibitionHalls
+                .FirstOrDefaultAsync(m => m.ExhibitionHall_Id == id);
+            if (exhibitionHall == null)
             {
                 return NotFound();
             }
 
-            return View(artwork);
+            return View(exhibitionHall);
         }
 
-        // GET: Artworks/Create
+        // GET: ExhibitionHalls/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Artworks/Create
+        // POST: ExhibitionHalls/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Artwork_Id,Title,Genre,Author,Rent")] Artwork artwork)
+        public async Task<IActionResult> Create([Bind("ExhibitionHall_Id,Name,Location,Rent")] ExhibitionHall exhibitionHall)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(artwork);
+                _context.Add(exhibitionHall);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(artwork);
+            return View(exhibitionHall);
         }
 
-        // GET: Artworks/Edit/5
+        // GET: ExhibitionHalls/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.ExhibitionHalls == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks.FindAsync(id);
-            if (artwork == null)
+            var exhibitionHall = await _context.ExhibitionHalls.FindAsync(id);
+            if (exhibitionHall == null)
             {
                 return NotFound();
             }
-            return View(artwork);
+            return View(exhibitionHall);
         }
 
-        // POST: Artworks/Edit/5
+        // POST: ExhibitionHalls/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Artwork_Id,Title,Genre,Author,Rent")] Artwork artwork)
+        public async Task<IActionResult> Edit(int id, [Bind("ExhibitionHall_Id,Name,Location,Rent")] ExhibitionHall exhibitionHall)
         {
-            if (id != artwork.Artwork_Id)
+            if (id != exhibitionHall.ExhibitionHall_Id)
             {
                 return NotFound();
             }
@@ -101,12 +99,12 @@ namespace ArtClubApp.Controllers
             {
                 try
                 {
-                    _context.Update(artwork);
+                    _context.Update(exhibitionHall);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ArtworkExists(artwork.Artwork_Id))
+                    if (!ExhibitionHallExists(exhibitionHall.ExhibitionHall_Id))
                     {
                         return NotFound();
                     }
@@ -117,64 +115,49 @@ namespace ArtClubApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(artwork);
+            return View(exhibitionHall);
         }
 
-        // GET: Artworks/Delete/5
+        // GET: ExhibitionHalls/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Artworks == null)
+            if (id == null || _context.ExhibitionHalls == null)
             {
                 return NotFound();
             }
 
-            var artwork = await _context.Artworks
-                .FirstOrDefaultAsync(m => m.Artwork_Id == id);
-            if (artwork == null)
+            var exhibitionHall = await _context.ExhibitionHalls
+                .FirstOrDefaultAsync(m => m.ExhibitionHall_Id == id);
+            if (exhibitionHall == null)
             {
                 return NotFound();
             }
 
-            return View(artwork);
+            return View(exhibitionHall);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-        public IActionResult ExhibitionHall()
-        {
-            return View();
-        }
-
-        // POST: Artworks/Delete/5
+        // POST: ExhibitionHalls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Artworks == null)
+            if (_context.ExhibitionHalls == null)
             {
-                return Problem("Entity set 'ArtClubContext.Artworks'  is null.");
+                return Problem("Entity set 'ArtClubContext.ExhibitionHalls'  is null.");
             }
-            var artwork = await _context.Artworks.FindAsync(id);
-            if (artwork != null)
+            var exhibitionHall = await _context.ExhibitionHalls.FindAsync(id);
+            if (exhibitionHall != null)
             {
-                _context.Artworks.Remove(artwork);
+                _context.ExhibitionHalls.Remove(exhibitionHall);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ArtworkExists(int id)
+        private bool ExhibitionHallExists(int id)
         {
-          return (_context.Artworks?.Any(e => e.Artwork_Id == id)).GetValueOrDefault();
+          return (_context.ExhibitionHalls?.Any(e => e.ExhibitionHall_Id == id)).GetValueOrDefault();
         }
     }
 }
