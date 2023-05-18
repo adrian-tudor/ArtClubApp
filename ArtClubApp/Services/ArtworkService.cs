@@ -1,5 +1,7 @@
 ﻿using ArtClubApp.Models;
 using ArtClubApp.Repository.Interfaces;
+using NuGet.Protocol.Core.Types;
+using System.Diagnostics;
 using System.Linq.Expressions;
 
     namespace ArtClubApp.Services
@@ -30,4 +32,4 @@ using System.Linq.Expressions;
             }
         }
     }
-
+    

@@ -3,7 +3,7 @@
 namespace ArtClubApp.Models
 {
     public class Artwork
-    {
+    { 
         [Key]
         public int Artwork_Id { get; set; }
         public string Title { get; set; }

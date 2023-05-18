@@ -5,8 +5,12 @@ namespace ArtClubApp.Services
 {
     public class PaymentService : BaseServices
         {
-            public PaymentService(IRepositoryWrapper repositoryWrapper) : base(repositoryWrapper) { }
-            public List<Payment> GetPayments()
+        public PaymentService Object { get; }
+
+        public PaymentService(IRepositoryWrapper repositoryWrapper) : base(repositoryWrapper) { }
+
+
+        public List<Payment> GetPayments(Payment payment)
             {
                 return repositoryWrapper.paymentRepository.FindAll().ToList();
             }
@@ -27,5 +31,12 @@ namespace ArtClubApp.Services
             {
                 repositoryWrapper.paymentRepository.Delete(payment);
             }
+
+        public float Tax(Payment p)
+        {
+
+            return  30 * p.Payment_Total;
+
         }
+    }
     }

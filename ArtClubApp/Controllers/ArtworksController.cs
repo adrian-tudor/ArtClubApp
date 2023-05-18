@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using ArtClubApp.Data;
 using ArtClubApp.Models;
 using Microsoft.AspNetCore.Identity;
+using ArtClubApp.Repository.Interfaces;
+using Microsoft.Win32;
 
 namespace ArtClubApp.Controllers
 {
@@ -19,6 +21,10 @@ namespace ArtClubApp.Controllers
         public ArtworksController(ArtClubContext context)
         {
             _context = context;
+        }
+
+        public ArtworksController(IArtworkRepository @object)
+        {
         }
 
         // GET: Artworks
@@ -179,6 +185,11 @@ namespace ArtClubApp.Controllers
         private bool ArtworkExists(int id)
         {
           return (_context.Artworks?.Any(e => e.Artwork_Id == id)).GetValueOrDefault();
+        }
+
+        public Task<Artwork?> GetArtworkById(int id)
+        {
+            return _context.Artworks.FirstOrDefaultAsync(s => s.Artwork_Id == id);
         }
     }
 }
