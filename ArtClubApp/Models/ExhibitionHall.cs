@@ -6,8 +6,8 @@ namespace ArtClubApp.Models
     {
         [Key]
         public int ExhibitionHall_Id { get; set; }
-        public string ExhibitionHall_Name { get; set; }
-        public string ExhbitionHall_Location { get; set; }
-        public float ExhibitionHall_Rent { get; set; }
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public float Rent { get; set; }
     }
 }

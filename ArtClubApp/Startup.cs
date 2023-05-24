@@ -23,7 +23,7 @@ namespace ArtClubApp
             services.AddRazorPages();
 
             services.AddIdentity<User, IdentityRole>()
-               // .AddDefaultTokenProviders()
+                .AddDefaultTokenProviders()
                .AddEntityFrameworkStores<ArtClubContext>()
                .AddDefaultUI();
 

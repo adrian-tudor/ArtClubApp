@@ -7,6 +7,12 @@ namespace ArtClubApp.Repository
         private ArtClubContext _context;
         private IAdminRepository AdminRepository;
         private IUserRepository UserRepository;
+        private IEventRepository EventRepository;
+        private IArtworkRepository ArtworkRepository;
+        private IContactRepository ContactRepository;
+        private IExhibitionHallRepository ExhibitionHallRepository;
+        private IPaymentRepository PaymentRepository;
+        private IResourcesRepository ResourcesRepository;
 
         public IUserRepository userRepository
         {
@@ -34,18 +40,78 @@ namespace ArtClubApp.Repository
         }
 
 
-        public IEventRepository eventRepository => throw new NotImplementedException();
+        public IEventRepository eventRepository
+        {
+            get
+            {
 
-        public IArtworkRepository artworkRepository => throw new NotImplementedException();
+                if (EventRepository == null)
+                {
+                    EventRepository = new EventRepository(_context);
+                }
+                return EventRepository;
+            }
+        }
 
-        public IContactRepository contactRepository => throw new NotImplementedException();
+        public IArtworkRepository artworkRepository
+        {
+            get
+            {
+                if (ArtworkRepository == null)
+                {
+                    ArtworkRepository = new ArtworkRepository(_context);
+                }
+                return ArtworkRepository;
+            }
+        }
 
-        public IExhibitionHallRepository exhibitionHallRepository => throw new NotImplementedException();
+        public IContactRepository contactRepository
+        {
+            get
+            {
+                if(ContactRepository == null)
+                {
+                    ContactRepository = new ContactRepository(_context);
+                }
+                return ContactRepository;
+            }
+        }
 
-        public IPaymentRepository paymentRepository => throw new NotImplementedException();
+        public IExhibitionHallRepository exhibitionHallRepository
+        {
+            get
+            {
+                if (ExhibitionHallRepository == null)
+                {
+                    ExhibitionHallRepository = new ExhibitionHallRepository(_context);
+                }
+                return ExhibitionHallRepository;
+            }
+        }
 
-        public IResourcesRepository resourcesRepository => throw new NotImplementedException();
+        public IPaymentRepository paymentRepository
+        {
+            get
+            {
+                if (PaymentRepository == null)
+                {
+                    PaymentRepository = new PaymentRepository(_context);
+                }
+                return PaymentRepository;
+            }
+        }
 
+        public IResourcesRepository resourcesRepository
+        {
+            get
+            {
+                if (ResourcesRepository == null)
+                {
+                    ResourcesRepository = new ResourcesRepository(_context);
+                }
+                return ResourcesRepository;
+            }
+        }
         public RepositoryWrapper(ArtClubContext dbContext)
         {
             _context = dbContext;
