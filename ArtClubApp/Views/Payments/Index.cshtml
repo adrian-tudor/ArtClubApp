@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ArtClubApp.Models.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Payment History</h1>
+
+<p>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Payment_Total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payment_Total)
+            </td>
+            <td>
+                    <a class="w-1 btn btn-lg btn-primary" asp-action="Details" asp-route-id="@item.Payment_Id">Details</a> |
+                    <a class="w-1 btn btn-lg btn-primary" asp-action="Delete" asp-route-id="@item.Payment_Id">Pay</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

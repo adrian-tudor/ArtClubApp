@@ -1,4 +1,5 @@
 ﻿using ArtClubApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,18 +8,41 @@ namespace ArtClubApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly SignInManager<User> signInManager;
+        private readonly UserManager<User> userManager;
+        public HomeController(ILogger<HomeController> logger, SignInManager<User> signInManager, UserManager<User> userManager)
         {
             _logger = logger;
+            this.signInManager = signInManager;
+            this.userManager = userManager;
         }
 
         public IActionResult Index()
         {
+            if (signInManager.IsSignedIn(User))
+            return RedirectToAction("Index", "Events");
+            return View();
+        }
+        
+
+        public IActionResult Privacy()
+        {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contacts()
+        {
+            return View();
+        }
+        public IActionResult Membership()
+        {
+            return View();
+        }
+        public IActionResult ExhibitionHalls()
+        {
+            return View();
+        }
+        public IActionResult Payments()
         {
             return View();
         }

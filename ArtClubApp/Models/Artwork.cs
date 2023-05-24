@@ -6,9 +6,9 @@ namespace ArtClubApp.Models
     {
         [Key]
         public int Artwork_Id { get; set; }
-        public string Artwork_Name { get; set; }
         public string Title { get; set; }
         public string Genre { get; set; }
-        public float Artwork_Rent { get; set; }
+        public string Author { get; set; }
+        public float Rent { get; set; }
     }
 }

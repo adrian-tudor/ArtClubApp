@@ -30,12 +30,9 @@ namespace ArtClubApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Artwork_Id"));
 
-                    b.Property<string>("Artwork_Name")
+                    b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("Artwork_Rent")
-                        .HasColumnType("real");
 
                     b.Property<string>("Genre")
                         .IsRequired()
@@ -43,6 +40,9 @@ namespace ArtClubApp.Migrations
 
                     b.Property<int?>("Payment_Id")
                         .HasColumnType("int");
+
+                    b.Property<float>("Rent")
+                        .HasColumnType("real");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -57,11 +57,11 @@ namespace ArtClubApp.Migrations
 
             modelBuilder.Entity("ArtClubApp.Models.Contact", b =>
                 {
-                    b.Property<int>("Message_id")
+                    b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Message_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactId"));
 
                     b.Property<int?>("ArtClubEvent_id")
                         .HasColumnType("int");
@@ -70,17 +70,14 @@ namespace ArtClubApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("First_name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Last_name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Message_id");
+                    b.Property<int>("User_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContactId");
 
                     b.HasIndex("ArtClubEvent_id");
 
@@ -95,15 +92,15 @@ namespace ArtClubApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Event_id"));
 
-                    b.Property<string>("Event_location")
+                    b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Event_name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Event_time")
+                    b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
@@ -124,19 +121,19 @@ namespace ArtClubApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExhibitionHall_Id"));
 
-                    b.Property<string>("ExhbitionHall_Location")
+                    b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ExhibitionHall_Name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("ExhibitionHall_Rent")
-                        .HasColumnType("real");
 
                     b.Property<int?>("Payment_Id")
                         .HasColumnType("int");
+
+                    b.Property<float>("Rent")
+                        .HasColumnType("real");
 
                     b.HasKey("ExhibitionHall_Id");
 
@@ -245,9 +242,6 @@ namespace ArtClubApp.Migrations
                     b.Property<int>("User_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("contactMessage_id")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -260,9 +254,22 @@ namespace ArtClubApp.Migrations
 
                     b.HasIndex("Payment_Id");
 
-                    b.HasIndex("contactMessage_id");
-
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("ContactUser", b =>
+                {
+                    b.Property<int>("ContactsContactId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ContactsContactId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("ContactUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -417,7 +424,7 @@ namespace ArtClubApp.Migrations
             modelBuilder.Entity("ArtClubApp.Models.Event", b =>
                 {
                     b.HasOne("ArtClubApp.Models.User", null)
-                        .WithMany("Artclub")
+                        .WithMany("Events")
                         .HasForeignKey("UserId");
                 });
 
@@ -448,14 +455,21 @@ namespace ArtClubApp.Migrations
                     b.HasOne("ArtClubApp.Models.Payment", null)
                         .WithMany("Users")
                         .HasForeignKey("Payment_Id");
+                });
 
-                    b.HasOne("ArtClubApp.Models.Contact", "contact")
-                        .WithMany("user")
-                        .HasForeignKey("contactMessage_id")
+            modelBuilder.Entity("ContactUser", b =>
+                {
+                    b.HasOne("ArtClubApp.Models.Contact", null)
+                        .WithMany()
+                        .HasForeignKey("ContactsContactId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("contact");
+                    b.HasOne("ArtClubApp.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -509,11 +523,6 @@ namespace ArtClubApp.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ArtClubApp.Models.Contact", b =>
-                {
-                    b.Navigation("user");
-                });
-
             modelBuilder.Entity("ArtClubApp.Models.Payment", b =>
                 {
                     b.Navigation("Artworks");
@@ -525,7 +534,7 @@ namespace ArtClubApp.Migrations
 
             modelBuilder.Entity("ArtClubApp.Models.User", b =>
                 {
-                    b.Navigation("Artclub");
+                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }
