@@ -59,12 +59,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEventTest.cs" />
+    <Compile Include="AddExhibitionHallTest.cs" />
+    <Compile Include="ContactTest.cs" />
+    <Compile Include="EditArtworkTest.cs" />
+    <Compile Include="FailLoginTest.cs" />
+    <Compile Include="ForgotPasswordTest.cs" />
+    <Compile Include="PageObjects\ContactPage.cs" />
+    <Compile Include="PassLoginTest.cs" />
+    <Compile Include="LogoutTest.cs" />
     <Compile Include="PageObjects\AddArtworkPage.cs" />
+    <Compile Include="PageObjects\AddEventPage.cs" />
+    <Compile Include="PageObjects\AddExhibitionHallPage.cs" />
     <Compile Include="PageObjects\ArtworkPage.cs" />
+    <Compile Include="PageObjects\ArtworkPageDetails.cs" />
+    <Compile Include="PageObjects\EditArtworkPage.cs" />
+    <Compile Include="PageObjects\EventPage.cs" />
+    <Compile Include="PageObjects\ExhibitionHallPage.cs" />
     <Compile Include="PageObjects\HomePage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="AddArtworkTest.cs" />
+    <Compile Include="PageObjects\ManageEmail.cs" />
+    <Compile Include="PageObjects\ManagePage.cs" />
+    <Compile Include="PageObjects\ManagePassword.cs" />
+    <Compile Include="PageObjects\ManagePersonalData.cs" />
+    <Compile Include="PageObjects\ManageProfilePage.cs" />
+    <Compile Include="PageObjects\RegisterPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterTest.cs" />
+    <Compile Include="UserChangeEmailTest.cs" />
+    <Compile Include="UserChangePasswordTest.cs" />
+    <Compile Include="UserDownloadPersonalDataTest.cs" />
+    <Compile Include="UserProfileTest.cs" />
+    <Compile Include="ViewArtworkDetailsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

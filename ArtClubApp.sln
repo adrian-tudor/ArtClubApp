@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArtClubApp", "ArtClubApp\ArtClubApp.csproj", "{F7440A7D-5221-4935-A555-DCE450EC125E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedTestsSeleniumMS", "AutomatedTestsSeleniumMS\AutomatedTestsSeleniumMS.csproj", "{10A1767A-9257-4557-9D15-16837C880DC7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7440A7D-5221-4935-A555-DCE450EC125E} = {F7440A7D-5221-4935-A555-DCE450EC125E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

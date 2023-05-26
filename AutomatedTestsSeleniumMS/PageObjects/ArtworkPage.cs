@@ -28,11 +28,30 @@ namespace AutomatedTestsSeleniumMS.PageObjects
 
         [FindsBy(How = How.XPath, Using = "/html/body/div/main/p/a")]
         private IWebElement addArtworkButton;
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div/main/table/tbody/tr[1]/td[5]/a[1]")]
+        private IWebElement editArtworkButton;
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div/main/table/tbody/tr[1]/td[4]/a[2]")]
+        private IWebElement detailsArtworkButton;
         public AddArtworkPage GotoAddArtworkPage()
         {
             addArtworkButton.Click();
             return new AddArtworkPage(webDriver);
         }
+
+        public EditArtworkPage GotoEditArtworkPage()
+        {
+            editArtworkButton.Click();
+            return new EditArtworkPage(webDriver);
+        }
+
+        public ArtworkPageDetails GotoArtworkDetailsPage()
+        {
+            detailsArtworkButton.Click();
+            return new ArtworkPageDetails(webDriver);
+        }
+
         public bool ArtworkExists(string artworkTitle)
         {
             var elements = artworksLists.FindElements(By.TagName("div"));

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AutomatedTestsSeleniumMS.PageObjects
 {
-    class LoginPage
+    class RegisterPage
     {
         private IWebDriver webDriver;
 
@@ -18,29 +18,27 @@ namespace AutomatedTestsSeleniumMS.PageObjects
         [FindsBy(How = How.Id, Using = "Input_Password")]
         private IWebElement passwordTextBox;
 
-        [FindsBy(How = How.Id, Using = "login-submit")]
-        private IWebElement loginButton;
+        [FindsBy(How = How.Id, Using = "Input_ConfirmPassword")]
+        private IWebElement passwordConfirmTextBox;
 
-        [FindsBy(How = How.Id, Using = "forgot-password")]
-        private IWebElement forgotpasswordButton;
-        public LoginPage(IWebDriver driver)
+        [FindsBy(How = How.Id, Using = "registerSubmit")]
+        private IWebElement registerButton;
+
+        public RegisterPage(IWebDriver driver)
         {
             webDriver = driver;
             PageFactory.InitElements(driver, this);
         }
 
-        public void Login(string userName, string password)
+        public void Register(string userName, string password)
         {
             userNameTextBox.Clear();
             userNameTextBox.SendKeys(userName);
             passwordTextBox.Clear();
             passwordTextBox.SendKeys(password);
-            loginButton.Click();
-        }
-
-        public void ForgotPassword()
-        {
-           forgotpasswordButton.Click();
+            passwordConfirmTextBox.Clear();
+            passwordConfirmTextBox.SendKeys(password);
+            registerButton.Click();
         }
 
     }

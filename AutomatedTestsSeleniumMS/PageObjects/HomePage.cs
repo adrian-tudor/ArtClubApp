@@ -21,15 +21,26 @@ namespace AutomatedTestsSeleniumMS.PageObjects
         [FindsBy(How = How.Id, Using = "login")]
         private IWebElement loginButton;
 
+        [FindsBy(How = How.Id, Using = "register")]
+        private IWebElement registerButton;
+
+
+
         public LoginPage GoToLoginPage()
         {
             loginButton.Click();
             return new LoginPage(webDriver);
         }
 
+        public RegisterPage GoToRegisterPage()
+        {
+            registerButton.Click();
+            return new RegisterPage(webDriver);
+        }
+
         public void GoToPage()
         {
-            webDriver.Navigate().GoToUrl("https://localhost:7292/");
+            webDriver.Navigate().GoToUrl("https://localhost:7292/Home");
         }
     }
 }
